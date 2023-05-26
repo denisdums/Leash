@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StoreProvider} from "./src/contexts/StoreContext";
+import Root from "./src/components/Root";
+import {useFonts} from "@expo-google-fonts/urbanist";
+import usedGoogleFonts from "./config/googleFonts";
+import {useEffect, useState} from "react";
+import Loader from "./src/components/Loader";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [fontLoaded] = useFonts({...usedGoogleFonts});
+    const [loading, setLoading] = useState(true);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000)
+    }, []);
+
+    if (!fontLoaded || loading) return <Loader/>;
+
+    return (
+        <StoreProvider>
+            <Root/>
+        </StoreProvider>
+    );
+
+}
