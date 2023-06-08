@@ -16,6 +16,9 @@ const icons = {
 }
 
 export default function Icon({name, style, isActive = false}) {
+    /***
+     * Returns Image component with icon
+     */
     const source = icons[name + (isActive ? 'Active' : '')];
     return <Image source={source} style={{...iconStyles.icon, ...style}}/>;
 }

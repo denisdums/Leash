@@ -15,11 +15,20 @@ export default function ProfileSwiper({user}) {
     const [swiperIndex, setSwiperIndex] = useState(0);
 
     useEffect(() => {
+        /***
+         *  retrieves list of users to put in swiper from UserService
+         */
         UserService.getSwiperUsers(user).then((users) => setSwiperUsers(users));
     }, [user]);
 
+    /***
+     * if there are no swiperUsers, returns Loader component
+     */
     if (!swiperUsers) return <Loader/>;
 
+    /***
+     * else returns the main swiper component
+     */
     return (
         <View style={styles.container}>
             <View style={{...styles.marker, ...styles.markerPositive, ...(swiperChoice !== null && swiperChoice ? styles.markerVisible: {})}}>
@@ -52,6 +61,9 @@ export default function ProfileSwiper({user}) {
     )
 
     function handleSwiped(index){
+        /***
+         * on swipe, if the user is before the last one, retrieves more users from UserService
+         */
         const isBeforeLast = index === swiperUsers.length - 2;
         if (isBeforeLast) {
             UserService.getSwiperUsers(user).then((users) => setSwiperUsers([...swiperUsers,...users]));
@@ -61,11 +73,20 @@ export default function ProfileSwiper({user}) {
     }
 
     function resetChoice() {
+        /***
+         * resets swiperChoice to null
+         */
         setSwiperChoice(null);
     }
 
     async function handleLike(userIndex) {
+        /***
+         * on like, calls UserService.likeUser with the userUID of the user at the current index
+         */
         const user = swiperUsers[userIndex];
+        /***
+         * if the user is a match, sets swiperMatch to true for 2 seconds
+         */
         const {isAMatch} = await UserService.likeUser(user.userUID);
         if (isAMatch) {
             setSwiperMatch(true);

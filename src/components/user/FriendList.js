@@ -10,13 +10,22 @@ import {buttonStyles} from "../../../assets/styles/buttons";
 import FriendCard from "./FriendCard";
 
 export default function FriendList(){
+    /***
+     * Returns View component with list of friends
+     */
     const isFocused = useIsFocused();
     const {user} = useContext(StoreContext)
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        /***
+         * if user is not logged in, returns
+         */
         if (!user) return;
+        /***
+         * retrieves list of friends from UserService
+         */
         setLoading(true);
         UserService.getMatchesUsers(user).then((users) => {
             setMatches(users);
@@ -24,6 +33,9 @@ export default function FriendList(){
         });
     }, [isFocused])
 
+    /***
+     * if loading is true, returns ActivityIndicator
+     */
     if (loading) return (
         <Container>
             <View style={{...styles.centerContainer}}>
@@ -32,6 +44,9 @@ export default function FriendList(){
         </Container>
     )
 
+    /***
+     * if matches is empty, returns View component with text and button
+     */
     if (matches.length === 0) return (
         <Container>
             <View style={{...styles.centerContainer}}>
@@ -44,6 +59,9 @@ export default function FriendList(){
         </Container>
     )
 
+    /***
+     * returns Container component with list of FriendCard components
+     */
     return (
         <Container>
             {matches.map((match) => {

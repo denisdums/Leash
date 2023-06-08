@@ -11,6 +11,10 @@ export default function SignInSecondaryButton(props) {
     }
 
     return (
+        /***
+         * Returns secondary button component and navigates to SignIn screen on press
+         * handles press on button and navigates to SignIn screen
+         */
         <Pressable onPress={handlePress}
                    style={{...buttonStyles.secondary, ...buttonStyles.minWidthButton, marginTop: 16}}>
             <Text style={buttonStyles.secondaryText}>Se connecter</Text>

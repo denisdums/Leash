@@ -5,6 +5,9 @@ import {fontStyles} from "../../../../assets/styles/styles";
 
 export default function SignUpSubmit() {
     return (
+        /***
+         * Returns View component with ActivityIndicator on submit
+         */
         <View style={{...formStyles.wrapper, backgroundColor: colors.purple}}>
             <SafeAreaView style={styles.wrapper}>
                 <View>

@@ -1,3 +1,6 @@
+/***
+ * Import all the fonts
+ */
 import {
     Urbanist_100Thin,
     Urbanist_200ExtraLight,

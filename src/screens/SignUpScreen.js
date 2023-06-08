@@ -25,10 +25,17 @@ const SignUpScreen = () => {
 
     if (isSubmitting) {
         return (
+            /***
+             * Displays SignUpSubmit if isSubmitting is true
+             */
             <SignUpSubmit/>
         )
     } else {
         return (
+            /***
+             * Displays FormSteps with DogNameStep, DogInfosStep, DogGalleryStep, HumanInfosStep and HumanPhotoStep
+             * Displays different steps depending on the step
+             */
             <Container>
                 <FormSteps onSubmit={submit} endText={'S\'inscrire'} secondaryButton={<SignInSecondaryButton/>}>
                     <DogNameStep values={dogName} onChange={({dogName}) => setDogName(dogName)}/>
@@ -43,11 +50,17 @@ const SignUpScreen = () => {
     }
 
     function updateDogInfos({dogDate, dogDescription}) {
+        /***
+         * Updates dogDate and dogDescription
+         */
         setDogDate(dogDate);
         setDogDescription(dogDescription);
     }
 
     function updateHumanInfos({userName, userEmail, userPassword, userPasswordVerify, userImage}) {
+        /***
+         * Updates userName, userEmail, userPassword, userPasswordVerify and userImage
+         */
         setUserName(userName);
         setUserEmail(userEmail);
         setUserPassword(userPassword);
@@ -56,6 +69,9 @@ const SignUpScreen = () => {
     }
 
     async function submit() {
+        /***
+         * Submits user infos to UserService
+         */
         setIsSubmitting(true);
         const result = await UserService.registerUserFromSignup({
             name:userName,

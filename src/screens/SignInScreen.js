@@ -10,6 +10,9 @@ const SignInScreen = ({navigation}) => {
     const [userPassword, setUserPassword] = useState(null);
 
     return (
+        /***
+         * Displays FormSteps with UserInfosSteps
+         */
         <Container>
             <FormSteps onSubmit={submit} endText={'Se connecter'} secondaryButton={<SignUpSecondaryButton/>}>
                 <UserInfosSteps onChange={updateUserInfos}/>
@@ -18,11 +21,17 @@ const SignInScreen = ({navigation}) => {
     )
 
     function updateUserInfos({userEmail, userPassword}) {
+        /***
+         * Updates userEmail and userPassword
+         */
         setUserEmail(userEmail);
         setUserPassword(userPassword);
     }
 
     async function submit(){
+        /***
+         * Submits user infos to UserService
+         */
         const data = await UserService.signIn(userEmail, userPassword);
     }
 }

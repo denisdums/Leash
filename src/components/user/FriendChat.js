@@ -3,7 +3,9 @@ import Container from "../Container";
 import {fontStyles} from "../../../assets/styles/styles";
 
 export default function FriendChat({navigation, route: {params: {user}}}) {
-
+    /***
+     * Returns View component with user image and name
+     */
     return (
         <Container>
             <View style={styles.header.wrapper}>

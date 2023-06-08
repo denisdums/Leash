@@ -15,6 +15,9 @@ export default function GalleryField({value, onChange, max}) {
     });
 
     return (
+        /***
+         * Returns View component with gallery field
+         */
         <View style={fieldStyles.gallery.wrapper}>
             <Pressable style={fieldStyles.gallery.add} onPress={initMediaPicker}>
                 <Image source={Add} style={fieldStyles.gallery.addIcon}/>
@@ -26,6 +29,9 @@ export default function GalleryField({value, onChange, max}) {
     )
 
     async function initMediaPicker() {
+        /***
+         * Opens media picker and adds selected images to values
+         */
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,

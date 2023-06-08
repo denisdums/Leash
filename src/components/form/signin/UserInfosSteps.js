@@ -18,6 +18,9 @@ const UserInfosSteps = forwardRef(({values, onChange}, ref) => {
     useImperativeHandle(ref, () => ({verify}));
 
     return (
+        /***
+         * Returns View component with Field components for userEmail and userPassword
+         */
         <View>
             <View style={globalStyles.flexRow}>
                 <Text style={fontStyles.heading}> De retour ? </Text>

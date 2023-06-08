@@ -7,6 +7,9 @@ import MapTab from "../src/components/tabs/MapTab";
 
 const screenOptions = ({route}) => ({
     tabBarIcon: ({focused, color, size}) => {
+        /***
+         * Displays the right icon depending on the route name
+         */
         if (route.name === 'Profile') {
             return <ProfileTab route={route} focused={focused}/>
         }

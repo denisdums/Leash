@@ -4,6 +4,9 @@ import {colors} from "../../assets/styles/colors";
 
 export default function Loader() {
     return (
+        /***
+         * Displays ActivityIndicator
+         */
         <View style={{...formStyles.wrapper, backgroundColor: colors.purple}}>
             <SafeAreaView style={styles.wrapper}>
                 <View>

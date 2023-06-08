@@ -18,9 +18,15 @@ const HumanInfosStep = forwardRef(({values, onChange}, ref) => {
         }
     });
 
+    /***
+     * Returns true if userPassword and userPasswordVerify are not null and equals
+     */
     useImperativeHandle(ref, () => ({verify}));
 
     return (
+        /***
+         * Returns View component with Field components for userName, userEmail, userPassword and userPasswordVerify
+         */
         <View>
             <View style={globalStyles.flexRow}>
                 <Text style={fontStyles.heading}> Et vous ? </Text>

@@ -3,6 +3,9 @@ import {colors} from "../../../assets/styles/colors";
 
 export default function UserImage({user, style}) {
     return (
+        /***
+         * Returns View component with user image
+         */
         <View style={{...styles.container, ...(style ? style : {})}}>
             <View style={styles.imageWrapper}>
                 {user.userImage && <Image source={{uri: user.userImage}} style={styles.image}/>}

@@ -4,6 +4,9 @@ export default function PetCardPicture({user}){
     const image = user.petImages[0];
 
     return (
+        /***
+         * Returns Image component with pet image
+         */
         <Image source={{uri: image}} style={styles.wrapper}/>
     )
 }

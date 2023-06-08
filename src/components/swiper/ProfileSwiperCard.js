@@ -10,12 +10,17 @@ function Tex(props) {
 
 Tex.propTypes = {children: PropTypes.node};
 export default function ProfileSwiperCard({user}) {
-
+    /***
+     * if user is not defined, returns null
+     */
     if (!user) return null;
 
     const firstPetImage = user.petImages[0];
 
     return (
+        /***
+         * Returns View component with user image and name
+         */
         <View style={styles.wrapper}>
             <View style={styles.card}>
                 <Image source={{uri:firstPetImage}} style={styles.image}/>

@@ -4,6 +4,9 @@ import UserService from "../../../services/user.service";
 
 export default function UserManagment({style}){
     return (
+        /***
+         * Returns View component with button to logout
+         */
         <View style={{...styles.container, ...(style ? style : {})}}>
             <Pressable onPress={handleLogout}
                        style={{...buttonStyles.secondary, ...buttonStyles.fullWidthButton}}>
@@ -15,6 +18,9 @@ export default function UserManagment({style}){
     )
 
     async function handleLogout() {
+        /***
+         * Calls UserService.logout() to logout user
+         */
         await UserService.logout()
     }
 }

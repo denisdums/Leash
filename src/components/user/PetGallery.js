@@ -4,6 +4,9 @@ import {fieldStyles} from "../../../assets/styles/fields";
 export default function PetGallery({user}){
 
     return (
+        /***
+         * Returns View component with pet images
+         */
         <View style={{...fieldStyles.gallery.wrapper, ...styles.container}}>
             {user.petImages && user.petImages.map((image, index) => {
                 return <Image source={{uri: image}} style={fieldStyles.gallery.image} key={index}/>

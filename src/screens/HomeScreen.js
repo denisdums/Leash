@@ -7,6 +7,9 @@ export default function HomeScreen() {
     const {user} = useContext(StoreContext);
 
     return (
+        /***
+         * Displays ProfileSwiper on HomeScreen
+         */
         <View style={styles.container}>
             <ProfileSwiper user={user}/>
         </View>

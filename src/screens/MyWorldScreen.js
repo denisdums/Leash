@@ -11,6 +11,9 @@ export default function MyWorldScreen({navigation}) {
     const [longitude, setLongitude] = useState(null);
 
     useEffect(() => {
+        /***
+         * Sets latitude and longitude from current user's location in store
+         */
         if (!store.location) return;
         setLatitude(store.location.coords.latitude);
         setLongitude(store.location.coords.longitude);
@@ -18,10 +21,16 @@ export default function MyWorldScreen({navigation}) {
 
 
     if (!latitude || !longitude) return (
+        /***
+         * Displays loading text if latitude or longitude are null
+         */
         <Text>Chargement de la carte...</Text>
     )
 
     return (
+        /***
+         * Displays MapView with current user's location
+         */
         <MapView
             style={{height: '100%'}}
             region={{
@@ -32,7 +41,7 @@ export default function MyWorldScreen({navigation}) {
             }}
         >
             <Marker coordinate={{latitude: latitude, longitude: longitude}}
-                    title={'toto'} description={'pkneeokenrn'}/>
+                    title={'Vous'} description={'Vous êtes ici'}/>
         </MapView>
     )
 }

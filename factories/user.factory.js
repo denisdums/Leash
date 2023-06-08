@@ -1,6 +1,8 @@
 import User from "../classes/User";
-
 const UserFactory = {
+    /***
+     * Creates user from raw data
+     */
     createFromRawData(rawData) {
         return new User(
             rawData.name,

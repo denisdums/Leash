@@ -16,6 +16,9 @@ const DogNameStep = forwardRef(({values, onChange}, ref) => {
     useImperativeHandle(ref, () => ({verify}));
 
     return (
+        /***
+         * Returns View component with Field component for dogName
+         */
         <View>
             <Text style={fontStyles.heading}>Salut !</Text>
             <Text style={fontStyles.bodyText}>prenons quelques instants pour se présenter. !</Text>

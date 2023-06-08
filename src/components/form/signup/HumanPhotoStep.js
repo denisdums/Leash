@@ -17,6 +17,9 @@ const HumanPhotoStep = forwardRef(({values, onChange}, ref) => {
     useImperativeHandle(ref, () => ({verify}));
 
     return (
+        /***
+         * Returns View component with Field component for userImage
+         */
         <View>
             <View style={globalStyles.flexRow}>
                 <Text style={fontStyles.heading}> Une petite photo ?</Text>
@@ -36,6 +39,9 @@ const HumanPhotoStep = forwardRef(({values, onChange}, ref) => {
     )
 
     function verify() {
+        /***
+         * Verifies if userImage is not null
+         */
         const userImageCheck = userImage !== null;
         if (!userImageCheck) {
             setUserImageError(true);

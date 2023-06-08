@@ -19,6 +19,9 @@ const DogInfosStep = forwardRef(({values, onChange}, ref) => {
     useImperativeHandle(ref, () => ({verify}));
 
     return (
+        /***
+         * Returns View component with Field component for dogDate and dogDescription
+         */
         <View>
             <View style={globalStyles.flexRow}>
                 <Text style={fontStyles.heading}> Enchanté </Text>

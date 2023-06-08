@@ -13,6 +13,9 @@ export default function FormSteps({onSubmit, children, endText, secondaryButton}
 
 
     return (
+        /***
+         * Returns form steps component
+         */
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={formStyles.wrapper}>
                 <View>
@@ -54,6 +57,10 @@ export default function FormSteps({onSubmit, children, endText, secondaryButton}
     }
 
     function nextStep() {
+        /***
+         * Verify current step and go to next step if it's not the last one
+         * If it's the last step, call onSubmit function
+         */
         if (currentStepRef.current.verify()) {
             if (currentStep < totalSteps - 1 && !isLastStep()) {
                 setCurrentStep(currentStep + 1);
@@ -65,6 +72,9 @@ export default function FormSteps({onSubmit, children, endText, secondaryButton}
     }
 
     function previousStep() {
+        /***
+         * Go to previous step if it's not the first one
+         */
         if (currentStep > 0) {
             setCurrentStep(currentStep - 1);
         }

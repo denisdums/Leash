@@ -5,8 +5,14 @@ import PetCardPicture from "./PetCardPicture";
 import {useNavigation} from "@react-navigation/native";
 
 export default function FriendCard({user}) {
+    /***
+     * Retrieves navigation object
+     */
     const navigation = useNavigation();
 
+    /***
+     * Returns View component with pet name, age, description, user name and user image
+     */
     return (
         <Pressable style={{...styles.wrapper, marginBottom: 16}} onPress={navigateToChat}>
             <PetCardPicture user={user}/>

@@ -19,6 +19,9 @@ const DogGalleryStep = forwardRef(({values, onChange}, ref) => {
 
 
     return (
+        /***
+         * Returns View component with Field component for dogImages
+         */
         <View>
             <View style={globalStyles.flexRow}>
                 <Text style={fontStyles.heading}> On veut voir </Text>

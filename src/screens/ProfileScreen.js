@@ -9,10 +9,19 @@ import PetDescription from "../components/user/PetDescription";
 import {StoreContext} from "../contexts/StoreContext";
 
 export default function ProfileScreen({navigation}) {
+    /***
+     * Retrieves user from StoreContext
+     */
     const {user} = useContext(StoreContext);
 
+    /***
+     * Returns null if user is null
+     */
     if (!user) return null;
 
+    /***
+     * Returns ProfileScreen
+     */
     return (
         <Container>
             <View style={styles.centerContainer}>

@@ -5,6 +5,9 @@ import GalleryField from "./GalleryField";
 
 export default function Field({placeholder, label, onChange, value,type, error, errorText}) {
     function renderField(type) {
+        /***
+         * Returns field component depending on type
+         */
         switch (type) {
             case 'date':
                 return <DatePicker mode="date"
@@ -36,12 +39,12 @@ export default function Field({placeholder, label, onChange, value,type, error, 
                                   value={value}
                                   secureTextEntry={true}
                                   onChangeText={onChange}
-                                  placeholder={placeholder ?? 'placeholder'}/>
+                                  placeholder={placeholder ?? ''}/>
             default:
                 return <TextInput style={fieldStyles.input}
                                value={value}
                                onChangeText={onChange}
-                               placeholder={placeholder ?? 'placeholder'}/>
+                               placeholder={placeholder ?? ''}/>
         }
     }
 

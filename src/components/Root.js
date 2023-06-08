@@ -13,13 +13,24 @@ import Loader from "./Loader";
 import MyWorldScreen from "../screens/MyWorldScreen";
 
 export default function Root() {
+    /***
+     * Stack Navigator for Root
+     * Displays HomeScreen, FriendsScreen, MyWorldScreen, and ProfileScreen depending on the user's authentication
+     * Retrieves store data from StoreContext
+     */
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
     const store = useContext(StoreContext);
 
-    //if (store.updating) return <Loader/>;
+    /***
+     * Returns Loader if store is updating
+     */
+    if (store.updating) return <Loader/>;
 
     return (
+        /***
+         * Navigation Container for Root depending on the user's authentication
+         */
         <NavigationContainer>
             {store.user ? (
                 <Tab.Navigator screenOptions={screenOptions}>

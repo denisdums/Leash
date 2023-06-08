@@ -2,6 +2,9 @@ import supabase from "../config/supabaseConfig";
 
 const UserRepository = {
     async signUpUser({email, password}) {
+        /***
+         * Signs up user to Supabase auth
+         */
         const {data, error} = await supabase.auth.signUp({email, password});
         if (error) {
             console.error(error);
@@ -12,6 +15,9 @@ const UserRepository = {
     },
 
     async registerUser({userUID, name, petName, petDate, petDescription, userImage, petImages}) {
+        /***
+         * Registers user to Supabase database
+         */
         const data = await supabase.from('userProfiles').insert({
             userUID,
             name,
@@ -25,6 +31,9 @@ const UserRepository = {
 
 
     async getSession() {
+        /***
+         * Returns session data from Supabase auth
+         */
         const {data, error} = await supabase.auth.getSession();
 
         if (error) {
@@ -36,11 +45,17 @@ const UserRepository = {
     },
 
     async logout() {
+        /***
+         * Returns logout data from Supabase auth
+         */
         const {error} = await supabase.auth.signOut();
         return !error;
     },
 
     async signIn({email, password}) {
+        /***
+         * Returns signIn data from Supabase auth
+         */
         const {error} = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
@@ -54,6 +69,9 @@ const UserRepository = {
     },
 
     async get(userUID) {
+        /***
+         * Returns user data from Supabase database by userUID
+         */
         const {data, error} = await supabase.from('userProfiles').select('*').eq('userUID', userUID);
         if (error) {
             console.error(error);
@@ -63,9 +81,15 @@ const UserRepository = {
     },
 
     async getSwiperUsers(userUID) {
+        /***
+         * Returns swiper users depending on current user
+         */
         const matchesUID = await this.getMatchesUID(userUID);
         const notMatchesUID = [...matchesUID, userUID];
-        const {data, error} = await supabase.from('userProfiles').select('*').not('userUID','in' ,`(${notMatchesUID.join(',')})`);
+        const {
+            data,
+            error
+        } = await supabase.from('userProfiles').select('*').not('userUID', 'in', `(${notMatchesUID.join(',')})`);
 
         if (error) {
             console.error(error);
@@ -76,6 +100,9 @@ const UserRepository = {
     },
 
     async likeUser(currentUserUID, userUID) {
+        /***
+         * Likes user and returns if it is a match
+         */
         let {isAMatch} = await this.isAMatch(currentUserUID, userUID);
 
         if (isAMatch) {
@@ -93,9 +120,10 @@ const UserRepository = {
 
     },
 
-
-    // Is a match
     async isAMatch(currentUserUID, userUID) {
+        /***
+         * Returns if it is a match between two users
+         */
         const {
             data,
             error
@@ -109,11 +137,10 @@ const UserRepository = {
         return {data, error, isAMatch};
     },
 
-
-
-
-    //Match
     async getMatchesUID(userUID) {
+        /***
+         * Returns matches UID from current user
+         */
         const firstResponse = await supabase.from('userRelations').select('user2').eq('user1', userUID).eq('match', true);
         const secondResponse = await supabase.from('userRelations').select('user1').eq('user2', userUID).eq('match', true);
         return [...firstResponse.data, ...secondResponse.data].map((match) => match.user2 ?? match.user1);
