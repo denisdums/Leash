@@ -3,6 +3,7 @@ import MapView, {Marker} from "react-native-maps";
 import {useContext, useEffect, useState} from "react";
 import {StoreContext} from "../contexts/StoreContext";
 import {useIsFocused} from "@react-navigation/native";
+import {colors} from "../../assets/styles/colors";
 
 export default function MyWorldScreen({navigation}) {
     const isFocused = useIsFocused();
@@ -40,8 +41,18 @@ export default function MyWorldScreen({navigation}) {
                 longitudeDelta: 0.0421,
             }}
         >
+            {/***
+             * Displays markers of user's location
+             */}
             <Marker coordinate={{latitude: latitude, longitude: longitude}}
                     title={'Vous'} description={'Vous êtes ici'}/>
+
+            {/***
+             * Displays markers for each main spots around user's location
+             * TODO: Get spots from API
+             */}
+            <Marker coordinate={{latitude: 50.638781495109896, longitude: 3.0482671920498423}}
+                    title={'Zoo de Lille'} description={'Superbe pour se promener'} pinColor={colors.purple}/>
         </MapView>
     )
 }
