@@ -13,6 +13,8 @@ const icons = {
     crossRed: require('../../assets/icons/cross-red.png'),
     map: require('../../assets/icons/map.png'),
     mapActive: require('../../assets/icons/map-active.png'),
+    send: require('../../assets/icons/send.png'),
+    sendActive: require('../../assets/icons/send-active.png'),
 }
 
 export default function Icon({name, style, isActive = false}) {

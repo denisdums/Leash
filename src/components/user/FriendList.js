@@ -9,7 +9,7 @@ import {fontStyles} from "../../../assets/styles/fontStyles";
 import {buttonStyles} from "../../../assets/styles/buttons";
 import FriendCard from "./FriendCard";
 
-export default function FriendList(){
+export default function FriendList({navigation}){
     /***
      * Returns View component with list of friends
      */

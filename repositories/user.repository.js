@@ -145,6 +145,31 @@ const UserRepository = {
         const secondResponse = await supabase.from('userRelations').select('user1').eq('user2', userUID).eq('match', true);
         return [...firstResponse.data, ...secondResponse.data].map((match) => match.user2 ?? match.user1);
     },
+
+    async sendMessage(senderUID, receiverUID, content) {
+        /***
+         * Sends message from sender to receiver
+         */
+        const {data, error} = await supabase.from('userMessages').insert({
+            sender: senderUID,
+            receiver: receiverUID,
+            content
+        });
+        return {data, error};
+    },
+
+    async getMessages(senderUID, receiverUID) {
+        /***
+         * Returns messages between sender and receiver ordered by date
+         */
+        const { data, error } = await supabase
+            .from('userMessages')
+            .select('*')
+            .in('sender', [senderUID, receiverUID])
+            .in('receiver', [senderUID, receiverUID])
+            .order('created_at', { ascending: true });
+        return {data, error};
+    }
 }
 
 export default UserRepository

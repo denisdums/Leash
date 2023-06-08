@@ -8,8 +8,7 @@ export default function Container({children, style}) {
          * it also has globalStyles container and style
          * it helps to keep the same style for all containers
          */
-        <SafeAreaView>
-            <Text>{style}</Text>
+        <SafeAreaView style={{flex: 1}}>
             <View style={{...globalStyles.container, ...style}}>
                 {children}
             </View>

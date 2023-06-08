@@ -110,6 +110,27 @@ const UserService = {
             return await this.getUserData(matchUID);
         }));
         return matchesData.map((match) => UserFactory.createFromRawData(match));
+    },
+
+    async sendMessage(receiverUID, content) {
+        /***
+         * Sends message
+         */
+        const currentUser = await this.getSession();
+        if (!currentUser) return {error: "Not Logged In"};
+        const senderUID = currentUser.user.id;
+        return await userRepository.sendMessage(senderUID, receiverUID, content);
+    },
+
+    async getMessages(receiverUID) {
+        /***
+         * Returns messages
+         */
+        const currentUser = await this.getSession();
+        if (!currentUser) return {error: "Not Logged In"};
+        const senderUID = currentUser.user.id;
+        const {data, error} = await userRepository.getMessages(senderUID, receiverUID);
+        return {data, error};
     }
 }
 
